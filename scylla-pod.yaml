@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: scylla
+  name: scylla
+spec:
+  containers:
+  - args:
+    - --broadcast-address
+    - 0.0.0.0
+    - --broadcast-rpc-address
+    - 0.0.0.0
+    - --seeds
+    - 0.0.0.0
+    - --rpc_address
+    - 192.168.65.3
+    image: scylladb/scylla
+    name: scylla
+    ports:
+    - containerPort: 7000
+      name: intra-node
+    - containerPort: 7001
+      name: tls-intra-node
+    - containerPort: 7199
+      name: jmx
+    - containerPort: 9042
+      name: cql
+    env:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+    resources: {}
+  restartPolicy: OnFailure
+status: {}

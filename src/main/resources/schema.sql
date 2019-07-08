@@ -1,0 +1,8 @@
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(30),
+  username  VARCHAR(30),
+  password VARCHAR(15)
+);
+
+CREATE SEQUENCE hibernate_sequence START WITH 1 INCREMENT BY 1 NOCYCLE;
